@@ -4,9 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, map, tap} from 'rxjs/operators';
 
 import {Hero} from './hero';
-
 import {MessageService} from './message.service';
-import {resolveReflectiveProviders} from '@angular/core/src/di/reflective_provider';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,7 +22,6 @@ export class HeroService {
   ) { }
 
   private heroesUrl = 'api/heroes';  // URL to web api
-
 
   /** GET heroes from the server */
   getHeroes(): Observable<Hero[]> {
@@ -86,7 +83,7 @@ export class HeroService {
       .pipe(
         tap(_ => this.log(`found heroes matching "${term}"`)),
         catchError(this.handleError<Hero[]>('searchHeroes', []))
-    );
+      );
   }
 
   private log(message: string) {
@@ -96,7 +93,7 @@ export class HeroService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to copnsole instead
+      console.error(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
