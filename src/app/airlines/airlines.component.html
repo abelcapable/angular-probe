@@ -1,0 +1,7 @@
+<ul class="airlines">
+  <li *ngFor="let airline of airlines; let i = index">
+    <a routerLink="/detail/{{airline.iata ? airline.iata : i}}">
+      <span class="badge">{{airline.iata ? airline.iata : i}}</span> {{airline.name}}
+    </a>
+  </li>
+</ul>
